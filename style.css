@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@font-face {
+  font-family: 'Hahmlet-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/Hahmlet-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans KR';
+  font-size: 16px;
+  overflow: hidden;
+  cursor: url(./img/blue-cursor-24.png), auto;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-link:hover {
+  cursor: pointer;
+}
+
+.mouse-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  transform: translate(-50%, -50%);
+  opacity: 50%;
+  z-index: 9999;
+}
+
+hr {
+  width: 100%;
+  line-height:2px;
+  color: gray;
+  margin:15px 0px;
+}
+
+.section-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  z-index: 1;
+}
+
+section.active-section {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+
+.mains {
+  background-color: rgba(211, 211, 211, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mains > article {
+  position: relative;
+}
+
+.main-img {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+#sky-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 100;
+}
+
+.main-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Hahmlet-Regular';
+  color: white;
+  text-shadow: 
+  -1px -1px 0 #000,
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
+  position: absolute;
+  z-index: 1000;
+  font-size: 4rem;
+}
+
+.intro {
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background-color: rgba(211, 211, 211, 0.6);
+  min-width: 1150px;
+}
+
+.myintro1,
+.myintro2 {
+  padding: 0;
+  margin:0 auto;
+  height: 100%;
+}
+
+.myphoto {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 이미지가 컨테이너를 넘치지 않도록 설정 */
+}
+
+@media (max-width: 1200px) {
+  .myintro1 {
+    display: none;
+  }
+}
+
+.mydescription {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 50px;
+  align-items: center;
+  margin: 0;
+  min-width: 500px;
+  gap: 40px;
+}
+
+.mytitle {
+  width: 90%;
+  height: 10%;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 3.5rem;
+  color: white;
+  text-shadow: 
+  -1px -1px 0 #000,
+   1px -1px 0 #000,
+  -1px  1px 0 #000,
+   1px  1px 0 #000;
+}
+
+.word-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 70%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  padding: 30px;
+}
+
+@media (max-width: 1200px) {
+  .word-box {
+    width: 60%;
+  }
+}
+
+.myword {
+  word-wrap: break-word;
+  line-height: 1.7;
+}
+
+#my-img {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease, filter 0.3s ease; /* 부드러운 전환 */
+}
+
+#myimg:hover {
+  transform: scale(1.05); /* 약간 확대 */
+  filter: brightness(80%); /* 밝기 조정 */
+}
+
+.mydescription {
+  width: 100%;
+  height: 100%;
+}
+
+.skills {
+  background-color: rgba(211, 211, 211, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.myskills {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;
+  padding: 10px;
+}
+
+/* 여기는 기술티켓 영역 */
+.contact-container {
+  margin: 0 auto;
+  width: 100%;
+  height: 50vh;
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ticket-cont {
+  position: relative;
+  margin: 0 auto;
+  width: 80%;
+  min-width: 500px;
+  display: grid;
+  place-items: center;
+  perspective: 1000px;
+  /* 3D 효과를 위한 원근법 */
+}
+
+.ticket,
+.seals {
+  grid-area: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  /* 3D 공간 유지 */
+  transition: transform 0.2s ease-out;
+  transform-origin: center;
+  /* 회전 중심을 요소의 가운데로 설정 */
+}
+
+.ticket img,
+.seals img {
+  width: 50%;
+  min-width: 500px;
+}
+
+.seals {
+  z-index: 2;
+  transform: translateY(-125%);
+  transition: transform 0.2s ease-out, filter 0.2s ease-out;
+  filter: brightness(1.05) contrast(1.05);
+  /* 기본 밝기와 대비를 미세하게 조정 */
+}
+
+
+.gobtn {
+  position: absolute;
+  width: 28%;
+  min-width: 300px;
+  height: 8%;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.gobtn:hover {
+  background-color: rgba(187, 16, 16, 0.5);
+  transition: 0.5s ease;
+}
+
+.github {
+  top: 40%;
+  left: 37%;
+}
+
+.email {
+  top: 54%;
+  left: 37%;
+}
+
+.ticket-cont:hover .ticket img {
+  transition: transform 0.2s ease-out;
+}
+
+.ticket-cont:hover .seals img {
+  transition: filter 0.2s ease-out;
+}
+
+/* 스킬 디테일 */
+
+.skills-detail {
+  height: 35vh;
+  width: 60%;
+  background-color: rgba(255,255,255,0.5);
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  min-width: 650px;
+  margin: 0 auto;
+}
+
+.vertical-line {
+  width: 2px;             /* 선의 너비 */
+  height: 90%;          /* 선의 높이 */
+  background-color: gray; /* 선의 색상 */
+  margin: 0 15px;         /* 양옆에 여백 추가 */
+}
+
+.sk-lang,
+.sk-tools {
+  width: 50%;
+}
+
+.sk-lang {
+  padding-right: 10px;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.sk-tools {
+  padding-left: 10px;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.projects {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.projects-container {
+  width: 100%;
+  height: 70%;
+  margin-top: -50px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-inner,
+.carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: rgba(0, 0, 0, 0.7); /* 버튼 배경색을 어둡게 설정 */
+}
+
+.carousel-indicators [data-bs-target].active {
+  background-color: rgba(0, 0, 0, 0.9); /* 활성화된 버튼을 더 어둡게 설정 */
+}
+
+.carousel-indicators [data-bs-target]:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* 마우스를 올렸을 때 어둡게 설정 */
+}
+
+.carousel-caption {
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  vertical-align: middle;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.bada {
+  background-color: violet;
+}
+
+.ssaflix {
+  background-color: burlywood;
+}
+
+.contact {
+  background-color: cadetblue;
+}
