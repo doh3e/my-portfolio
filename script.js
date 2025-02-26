@@ -34,11 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 🎯 프로젝트 슬라이드 데이터 배열
   const projects = [
-    { title: "바라는 바다!", desc: "날씨 API를 이용한 해수욕장 리뷰 웹사이트" },
-    { title: "SSAFLIX", desc: "개인 영화 슬라이드 웹사이트" },
-    { title: "프로젝트 3", desc: "설명 추가 가능" },
-    { title: "프로젝트 4", desc: "설명 추가 가능" },
-    { title: "프로젝트 5", desc: "설명 추가 가능" }
+    { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 웹사이트" },
+    { title: "cineMATE", desc: "Open API 기반 다양한 로직의 영화 추천 웹사이트" },
+    { title: "piccup", desc: "취업준비생을 위한 이력서 및 자소서 관리 사이트" },
+    { title: "바라는 바다!", desc: "날씨 API와 바다성향 테스트 기반 해수욕장 추천, 유저 리뷰 웹사이트" },
+    { title: "SSAFLIX", desc: "좋아하는 영화를 아카이빙한 개인 웹" }
   ];
 
   // 🎯 프로젝트 섹션 슬라이드 기능
@@ -55,8 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const updateCarousel = () => {
     if (carousel) {
+      const slideWidth = slides[0].offsetWidth; // 각 슬라이드의 실제 너비
       carousel.style.transition = "transform 0.5s ease-in-out";
-      carousel.style.transform = `translateX(-${slideIndex * 100}vw)`;
+      carousel.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
       projectTitle.textContent = projects[slideIndex].title;
       projectDesc.textContent = projects[slideIndex].desc;
     }
@@ -75,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (nextBtn) nextBtn.addEventListener("click", nextSlide);
   if (prevBtn) prevBtn.addEventListener("click", prevSlide);
 
+  window.addEventListener("resize", updateCarousel); // 화면 크기 변경 시 위치 재조정
   updateCarousel();
 
   // 🎯 섹션 전환 (휠 스크롤 가능)

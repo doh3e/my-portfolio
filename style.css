@@ -62,23 +62,41 @@ nav > div > a,
   z-index: 2;
 }
 
-#carousel {
+/* 캐러셀 컨테이너 설정 */
+.w-full.max-w-4xl.relative.overflow-hidden {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
   display: flex;
-  width: 500vw;
-  transition: transform 0.5s ease-in-out;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.project-thumbnail {
-  flex: 0 0 100vw;
+/* 캐러셀 내부 */
+#carousel {
   display: flex;
-  flex-direction: column;
+  width: auto; /* 자동 크기 조정 */
+  transition: transform 0.5s ease-in-out;
+  align-items: center;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  flex-wrap: nowrap;
+}
+
+/* 각 슬라이드 설정 */
+.project-thumbnail {
+  flex: 0 0 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 이미지 크기 자동 조정 */
+/* 이미지 크기 조정 */
 .project-thumbnail img {
   width: 100%;
-  object-fit: cover;
+  max-width: 900px;
+  height: auto;
+  max-height: 350px;
+  aspect-ratio: 16/9; /* 비율 유지 */
+  object-fit: contain;
 }
-
