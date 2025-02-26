@@ -1,162 +1,161 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // 모바일 햄버거
-  const menuToggle = document.getElementById('menu-toggle');
-  const navMenu = document.querySelector('.mobile-menu');
+  const content = document.getElementById("content");
+  const mobileWarning = document.getElementById("mobile-warning");
 
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function () {
-      navMenu.classList.toggle('hidden');
-    });
+  // 📌 모바일 환경 감지 함수
+  function checkMobile() {
+    return window.innerWidth <= 768;
   }
 
-  // 스크롤 반응
-  const sections = document.querySelectorAll('.section');
-  const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
-  let currentSectionIndex = 0;
+  // 📌 모바일 여부 저장
+  let isMobile = checkMobile();
+  let eventsRegistered = false; // 이벤트 중복 등록 방지
 
-  // 초기 설정: 첫 번째 섹션 활성화
-  sections[currentSectionIndex].classList.add('active-section');
+  // 📌 모바일 차단 함수
+  function handleMobileBlock() {
+    isMobile = checkMobile();
+    if (isMobile) {
+      console.log("📱 모바일 환경 - 기능 차단");
+      content.style.display = "none";
+      mobileWarning.style.display = "flex";
+      removeEventListeners(); // 이벤트 제거
+    } else {
+      console.log("🖥️ PC 환경 - 정상 동작");
+      content.style.display = "block";
+      mobileWarning.style.display = "none";
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('data-target');
-      const targetSection = document.querySelector(targetId);
-
-      if (targetSection) {
-        sections[currentSectionIndex].classList.remove('active-section');
-        targetSection.classList.add('active-section');
-        currentSectionIndex = Array.from(sections).indexOf(targetSection);
+      if (!eventsRegistered) {
+        registerEventListeners(); // 이벤트 등록
+        eventsRegistered = true;
       }
-    });
-  });
-
-  // 🎯 프로젝트 슬라이드 데이터 배열
-  const projects = [
-    { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 웹사이트" },
-    { title: "cineMATE", desc: "Open API 기반 다양한 로직의 영화 추천 웹사이트" },
-    { title: "piccup", desc: "취업준비생을 위한 이력서 및 자소서 관리 사이트" },
-    { title: "바라는 바다!", desc: "날씨 API와 바다성향 테스트 기반 해수욕장 추천, 유저 리뷰 웹사이트" },
-    { title: "SSAFLIX", desc: "좋아하는 영화를 아카이빙한 개인 웹" }
-  ];
-
-  // 🎯 프로젝트 섹션 슬라이드 기능
-  const carousel = document.getElementById("carousel");
-  const slides = document.querySelectorAll("#carousel > div");
-  const prevBtn = document.getElementById("prev");
-  const nextBtn = document.getElementById("next");
-
-  const projectTitle = document.getElementById("project-title");
-  const projectDesc = document.getElementById("project-desc");
-
-  let slideIndex = 0;
-  const totalSlides = slides.length;
-
-  const updateCarousel = () => {
-    if (carousel) {
-      const slideWidth = slides[0].offsetWidth; // 각 슬라이드의 실제 너비
-      carousel.style.transition = "transform 0.5s ease-in-out";
-      carousel.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
-      projectTitle.textContent = projects[slideIndex].title;
-      projectDesc.textContent = projects[slideIndex].desc;
     }
-  };
+  }
 
-  const nextSlide = () => {
-    slideIndex = (slideIndex + 1) % totalSlides;
-    updateCarousel();
-  };
+  handleMobileBlock();
+  window.addEventListener("resize", handleMobileBlock);
 
-  const prevSlide = () => {
-    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-    updateCarousel();
-  };
+  if (isMobile) return;
 
-  if (nextBtn) nextBtn.addEventListener("click", nextSlide);
-  if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+  // ✅ 이벤트 리스너 등록 함수
+  function registerEventListeners() {
 
-  window.addEventListener("resize", updateCarousel); // 화면 크기 변경 시 위치 재조정
-  updateCarousel();
-
-  // 🎯 섹션 전환 (휠 스크롤 가능)
-  const handleSectionChange = (direction) => {
-    sections[currentSectionIndex].classList.remove('active-section');
-
-    if (direction === 'next') {
-      currentSectionIndex = (currentSectionIndex + 1) % sections.length;
-    } else if (direction === 'prev') {
-      currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
-    }
+    // 🎯 섹션 전환 기능
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+    let currentSectionIndex = 0;
 
     sections[currentSectionIndex].classList.add('active-section');
-  };
 
-  window.addEventListener('wheel', function (e) {
-      if (e.deltaY > 0) handleSectionChange('next');
-      else if (e.deltaY < 0) handleSectionChange('prev');
-  });
+    navLinks.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-target');
+        const targetSection = document.querySelector(targetId);
 
-  window.addEventListener('keydown', function (e) {
-    const isProjectsSection = sections[currentSectionIndex].id === "projects";
-
-    if (isProjectsSection) {
-      if (e.key === 'ArrowRight') nextSlide();
-      else if (e.key === 'ArrowLeft') prevSlide();
-    } else {
-      if (e.key === 'ArrowDown') handleSectionChange('next');
-      else if (e.key === 'ArrowUp') handleSectionChange('prev');
-    }
-  });
-
-  // 🎯 마우스 이펙트 (mouse-cursor가 null인지 체크)
-  const mouseCursor = document.querySelector('.mouse-cursor');
-  if (mouseCursor) {
-    document.addEventListener('mousemove', (e) => {
-      requestAnimationFrame(() => {
-        mouseCursor.style.left = `${e.clientX - 22}px`;
-        mouseCursor.style.top = `${e.clientY - 22}px`;
+        if (targetSection) {
+          sections[currentSectionIndex].classList.remove('active-section');
+          targetSection.classList.add('active-section');
+          currentSectionIndex = Array.from(sections).indexOf(targetSection);
+        }
       });
     });
-  }
 
-  // 🎯 티켓 애니메이션 기능
-  const ticketContainer = document.querySelector('.ticket-cont');
-  if (ticketContainer) {
-    ticketContainer.addEventListener('mousemove', function (e) {
-      const ticket = document.querySelector('.ticket');
-      const seals = document.querySelector('.seals');
+    // 🎯 프로젝트 데이터 배열
+    const projects = [
+      { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 사이트", link: "https://i12a703.p.ssafy.io/" },
+      { title: "cineMATE", desc: "영화 Open API 기반의 당신을 위한 맞춤 영화 추천 사이트", link: "https://github.com/doh3e/cineMATE" },
+      { title: "piccup", desc: "취업준비생을 위한 이력서 및 자소서 관리 사이트", link: "https://github.com/doh3e/piccup" },
+      { title: "바라는 바다!", desc: "날씨 API 및 바다성향 테스트 기반 해수욕장 추천 및 유저 리뷰 사이트", link: "https://github.com/doh3e/bada" },
+      { title: "SSAFLIX", desc: "내가 사랑하는 영화 아카이빙 웹", link: "https://doh3e.github.io/ssaflix-movie/" }
+    ];
 
-      if (!ticket || !seals) return;
+    // 🎯 프로젝트 슬라이드 기능
+    const carousel = document.getElementById("carousel");
+    const slides = document.querySelectorAll("#carousel > div");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
 
-      const rect = ticketContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    const projectTitle = document.getElementById("project-title");
+    const projectDesc = document.getElementById("project-desc");
+    const moveBtn = document.getElementById("move-btn");
 
-      const centerX = ticketContainer.offsetWidth / 2;
-      const centerY = ticketContainer.offsetHeight / 2;
+    let slideIndex = 0;
+    const totalSlides = slides.length;
 
-      const rotateX = (centerY - y) / centerY * 15;
-      const rotateY = (x - centerX) / centerX * 15;
+    const updateMoveBtn = () => {
+      if (moveBtn) moveBtn.href = projects[slideIndex].link;
+    };
 
-      const transformValue = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      ticket.style.transform = transformValue;
-      seals.style.transform = `${transformValue} translateY(-125%)`;
+    const updateCarousel = () => {
+      if (carousel) {
+        const slideWidth = slides[0].offsetWidth;
+        carousel.style.transition = "transform 0.5s ease-in-out";
+        carousel.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+        projectTitle.textContent = projects[slideIndex].title;
+        projectDesc.textContent = projects[slideIndex].desc;
+      }
+    };
 
-      const brightness = 1.05 + Math.abs(rotateX / 30);
-      const contrast = 1.05 + Math.abs(rotateY / 30);
-      seals.style.filter = `brightness(${brightness}) contrast(${contrast})`;
+    const nextSlide = () => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      updateCarousel();
+      updateMoveBtn();
+    };
+
+    const prevSlide = () => {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+      updateMoveBtn();
+    };
+
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+
+    window.addEventListener("resize", updateCarousel);
+    updateCarousel();
+    updateMoveBtn();
+
+    // 🎯 섹션 전환 기능
+    const handleSectionChange = (direction) => {
+      sections[currentSectionIndex].classList.remove('active-section');
+
+      if (direction === 'next') {
+        currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+      } else if (direction === 'prev') {
+        currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+      }
+
+      sections[currentSectionIndex].classList.add('active-section');
+    };
+
+    window.addEventListener('wheel', function (e) {
+      if (e.deltaY > 0) handleSectionChange('next');
+      else if (e.deltaY < 0) handleSectionChange('prev');
     });
 
-    ticketContainer.addEventListener('mouseleave', function () {
-      const ticket = document.querySelector('.ticket');
-      const seals = document.querySelector('.seals');
-
-      if (!ticket || !seals) return;
-
-      ticket.style.transform = 'rotateX(0) rotateY(0)';
-      seals.style.transform = 'rotateX(0) rotateY(0) translateY(-125%)';
-      seals.style.filter = 'brightness(1.05) contrast(1.05)';
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') handleSectionChange('next');
+      else if (e.key === 'ArrowUp') handleSectionChange('prev');
     });
+
+    // 🎯 마우스 커서 이펙트
+    const mouseCursor = document.querySelector('.mouse-cursor');
+    if (mouseCursor) {
+      document.addEventListener('mousemove', (e) => {
+        requestAnimationFrame(() => {
+          mouseCursor.style.left = `${e.clientX - 22}px`;
+          mouseCursor.style.top = `${e.clientY - 22}px`;
+        });
+      });
+    }
   }
+
+  function removeEventListeners() {
+    window.removeEventListener('wheel', handleSectionChange);
+    window.removeEventListener('keydown', handleSectionChange);
+  }
+
+  registerEventListeners();
+
 });

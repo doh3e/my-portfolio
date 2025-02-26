@@ -1,8 +1,33 @@
-/* 전체 화면을 벗어나지 않도록 설정 */
+/* 기존 코드 수정 */
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden; /* 스크롤 숨김 */
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+/* 기본적으로 숨겨둠 */
+#mobile-warning {
+  display: none;
+}
+
+/* 가로 820px 이하에서는 본문 숨기고 경고 메시지만 보이도록 */
+@media (max-width: 768px) {
+  #content {
+    display: none;
+  }
+  #mobile-warning {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px;
+  }
 }
 
 nav > div > a,
@@ -23,30 +48,10 @@ nav > div > a,
   z-index: 9999;
 }
 
-/* 3D 효과 */
-.ticket-cont {
-  perspective: 1000px;
-}
-.ticket,
-.seals {
-  transform-style: preserve-3d;
-  transform-origin: center;
-}
-
-/* 이미지 효과 */
-#my-img {
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-#myimg:hover {
-  transform: scale(1.05);
-  filter: brightness(80%);
-}
-
-/* 모든 섹션이 겹쳐지고, 한 번에 하나만 표시되도록 설정 */
 .section {
   position: absolute;
-  width: 100vw; /* 화면 가로폭 100% */
-  height: 100vh; /* 화면 세로폭 100% */
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
   opacity: 0;
@@ -55,14 +60,12 @@ nav > div > a,
   z-index: 1;
 }
 
-/* 현재 활성화된 섹션만 표시 */
 .active-section {
   opacity: 1;
   transform: scale(1);
   z-index: 2;
 }
 
-/* 캐러셀 컨테이너 설정 */
 .w-full.max-w-4xl.relative.overflow-hidden {
   width: 100%;
   max-width: 1200px;
@@ -73,17 +76,15 @@ nav > div > a,
   overflow: hidden;
 }
 
-/* 캐러셀 내부 */
 #carousel {
   display: flex;
-  width: auto; /* 자동 크기 조정 */
+  width: auto;
   transition: transform 0.5s ease-in-out;
   align-items: center;
-  justify-content: flex-start; /* 왼쪽 정렬 */
+  justify-content: flex-start;
   flex-wrap: nowrap;
 }
 
-/* 각 슬라이드 설정 */
 .project-thumbnail {
   flex: 0 0 100%;
   display: flex;
@@ -91,12 +92,16 @@ nav > div > a,
   justify-content: center;
 }
 
-/* 이미지 크기 조정 */
 .project-thumbnail img {
   width: 100%;
   max-width: 900px;
   height: auto;
   max-height: 350px;
-  aspect-ratio: 16/9; /* 비율 유지 */
+  aspect-ratio: 16/9;
   object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-thumbnail:hover img {
+  transform: scale(1.05);
 }

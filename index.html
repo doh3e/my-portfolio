@@ -11,7 +11,12 @@
   <link rel="stylesheet" href="./font.css">
   <link rel="stylesheet" href="./style.css">
 </head>
-<body class="bg-gray-100 overflow-x-hidden">
+<body class="bg-gray-200 overflow-x-hidden">
+
+  <!-- 모바일 차단 메시지 -->
+  <div id="mobile-warning">
+    <p>📱 모바일 환경에서는 보기 어렵습니다. PC에서 확인해주세요.</p>
+  </div>
 
   <!-- Navbar -->
   <nav class="w-full bg-gray-200 fixed top-0 z-50 shadow-md">
@@ -21,36 +26,21 @@
 
         <!-- 🖥️ 데스크톱용 메뉴 (기본적으로 보임) -->
         <div class="hidden md:flex space-x-4">
-          <a class="nav-link hover:text-blue-600 noto-sans-kr" data-target="#mains">MAIN</a>
-          <a class="nav-link hover:text-blue-600 noto-sans-kr" data-target="#intro">INTRODUCE</a>
-          <a class="nav-link hover:text-blue-600 noto-sans-kr" data-target="#skills">SKILLS</a>
-          <a class="nav-link hover:text-blue-600 noto-sans-kr " data-target="#projects">PROJECTS</a>
-          <a class="nav-link hover:text-blue-600 noto-sans-kr" data-target="#contact">CONTACT</a>
+          <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#mains">MAIN</a>
+          <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#intro">INTRODUCE</a>
+          <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#skills">SKILLS</a>
+          <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr " data-target="#projects">PROJECTS</a>
+          <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#contact">CONTACT</a>
         </div>
-
-        <!-- 🍔 햄버거 버튼 (모바일 전용) -->
-        <button class="md:hidden p-2 focus:outline-none" id="menu-toggle">
-          <i class="fas fa-bars"></i>
-        </button>
       </div>
     </div>
-
-    <!-- 📱 모바일 메뉴 (기본적으로 숨김) -->
-    <div class="mobile-menu hidden md:hidden absolute top-16 left-0 w-full bg-gray-200 shadow-md">
-      <a class="nav-link block py-2 px-4 text-gray-700 hover:bg-gray-300 noto-sans-kr" data-target="#mains">MAIN</a>
-      <a class="nav-link block py-2 px-4 text-gray-700 hover:bg-gray-300 noto-sans-kr" data-target="#intro">INTRODUCE</a>
-      <a class="nav-link block py-2 px-4 text-gray-700 hover:bg-gray-300 noto-sans-kr" data-target="#skills">SKILLS</a>
-      <a class="nav-link block py-2 px-4 text-gray-700 hover:bg-gray-300 noto-sans-kr" data-target="#projects">PROJECTS</a>
-      <a class="nav-link block py-2 px-4 text-gray-700 hover:bg-gray-300 noto-sans-kr" data-target="#contact">CONTACT</a>
-    </div>
   </nav>
-
 
   <!-- 마우스 효과 -->
   <div class="mouse-cursor"></div>
 
   <!-- 메인 섹션 -->
-  <main>
+  <main id="content">
     <section id="mains" class="section flex justify-center items-center bg-gray-300 active-section">
       <div class="relative">
         <div class="text-white text-4xl font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
@@ -62,34 +52,143 @@
 
     <!-- 소개 섹션 -->
     <section id="intro" class="section flex flex-col md:flex-row items-center justify-center bg-gray-200 min-h-[60vh]">
-      <!-- 이미지 (768px 이하일 때 숨김) -->
-      <div class="w-full md:w-1/2 flex justify-center md:block hidden">
+      <div class="w-full object-cover md:w-1/2 flex justify-center mt-16 items-center md:block hidden">
         <img src="./img/profile.jpg" alt="myimg" class="w-full h-full rounded-lg shadow-lg transition-transform hover:scale-105">
       </div>
       
-      <!-- 텍스트 영역 (768px 이하일 때 중앙 정렬) -->
       <div class="w-full md:w-2/3 text-center md:text-left p-8 flex flex-col justify-center">
         <h2 class="text-4xl font-bold text-gray-800 parisienne-regular">Introduce</h2>
         <hr class="my-4 border-gray-400 noto-sans-kr">
-        <p class="mt-4 text-gray-700 noto-sans-kr">
-          자기소개 내용<br>
-          대애애애애애애애충 자기소개<br>
-          백엔드..<br>
-          뭘좋아하는지..<br>
-          기타등등<br>
-        </p>
+        <h2 class="my-4 text-2xl noto-sans-kr font-bold">신입 백엔드 개발자 정지은</h2>
+        <div class="flex flex-col md:flex-row gap-x-8 gap-y-8">
+          <div class="w-full md:w-1/2">
+            <p class="mt-2 font-bold text-lg text-gray-700 noto-sans-kr">
+              약력
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <strong>24.07 ~ </strong> 삼성 청년 소프트웨어 아카데미(SSAFY) 12기
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <strong>23.12 ~ 24.06</strong> Java & Spring 백엔드 국비교육 수료
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <strong>2020 ~ 2023</strong> 작가 생활 및 실내건축 설계업 종사
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <strong>2013 ~ 2020</strong> 강원대학교(춘천) 스토리텔링학과 졸업
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <strong>2018 ~ 2019</strong> 일본 국립 홋카이도 대학 교환학생
+            </p>
+          </div>
+          <div class="w-full md:w-1/2">
+            <p class="mt-2 font-bold text-lg text-gray-700 noto-sans-kr">
+              특장점
+            </p>
+            <p class="mt-4 mb-4 text-gray-700 noto-sans-kr">
+              - 끊임없이 성장하고자 하는 향상심과 노력💪<br>
+              - 둥글고 원만하게 생활하고자 하는 마음가짐<br>
+              - 낮은 웃음 허들 (웃기면 웃기는 대로 잘 웃어요)<br>
+            </p>
+            <p class="mt-2 font-bold text-lg text-gray-700 noto-sans-kr">
+              좋아하는 것
+            </p>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              - 달달한 것과 귀여운 것🐈<br>
+              - 글쓰고 생각하기, 소설 읽기<br>
+              - 문화 생활, 그리고 온라인 문화 생활...🎮
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 스킬 섹션 -->
-    <section id="skills" class="section flex flex-col md:flex-row items-center bg-gray-200 p-8">
-      <div class="w-full md:w-2/3 text-center md:text-left p-8">
+    <section id="skills" class="section w-full flex flex-col md:flex-row items-center bg-gray-200 p-8">
+      <div class="w-full text-center md:text-center p-8">
         <h2 class="text-4xl font-bold text-gray-800 parisienne-regular">Skills</h2>
-        <p class="mt-4 text-gray-700 noto-sans-kr">
-          스킬 소개<br>
-          <hr class="my-4 border-gray-400 noto-sans-kr">
-          Java Spring SQL Python Django 등등등...
-        </p>
+        <hr class="my-4 border-gray-400 noto-sans-kr">
+        <div class="flex gap-x-8">
+          <div class="flex-row w-full md:w-1/4">
+            <h3 class="text-xl noto-sans-kr font-bold">LANGUAGE</h3>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white">
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+              </span>
+            </p>
+          </div>
+          <div class="flex-row w-full md:w-1/4">
+            <h3 class="text-xl noto-sans-kr font-bold">FRAMEWORK</h3>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"/>
+                ■■■□□
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white&">
+                ■■■□□
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white">
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white">
+              </span>
+            </p>
+          </div>
+          <div class="flex-row w-full md:w-1/4">
+            <h3 class="text-xl noto-sans-kr font-bold">DB/VCS</h3>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Oracle-FF0000?style=for-the-badge&logo=Oracle&logoColor=white">
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Git-f05032?style=for-the-badge&logo=git&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/GitLab-fc6d26?style=for-the-badge&logo=gitlab&logoColor=white"/>
+              </span>
+            </p>
+          </div>
+          <div class="flex-row w-full md:w-1/4">
+            <h3 class="text-xl noto-sans-kr font-bold">TOOLS</h3>
+            <p class="mt-4 text-gray-700 noto-sans-kr">
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Visual Studio Code-0078d7?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">  
+                <img src="https://img.shields.io/badge/Eclipse IDE-2C2255?style=for-the-badge&logo=eclipse&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Jira-0052cc?style=for-the-badge&logo=jira&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white"/>
+              </span>
+              <span class="flex mb-2 gap-x-2">
+                <img src="https://img.shields.io/badge/Discord-5865f2?style=for-the-badge&logo=discord&logoColor=white"/>
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -134,28 +233,32 @@
         <p id="project-desc" class="text-gray-600">Project Description</p>
       </div>
 
-      <!-- 자세히 보기 버튼 -->
-      <button id="detail-btn" class="mt-4 px-6 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition">
-        자세히 보기
-      </button>
+    <!-- 프로젝트 이동 버튼 -->
+    <a id="move-btn" href="" target="_blank" 
+      class="mt-4 px-6 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition text-center inline-block"
+      role="button" tabindex="0">
+      프로젝트 보러가기
+    </a>
+
     </section>
-
-    <!--모달 창 -->
-    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-      <div class="bg-white rounded-lg p-6 max-w-lg shadow-lg relative">
-        <button id="close-modal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800">✖</button>
-        <h2 id="modal-title" class="text-2xl font-bold mb-4"></h2>
-        <p id="modal-desc" class="text-gray-700"></p>
-      </div>
-    </div>
-
-
 
     <!-- 콘택트 섹션 -->
     <section id="contact" class="section flex flex-col justify-center items-center bg-cyan-600 text-white">
-      <h2 class="text-4xl font-bold mb-4 parisienne-regular">Contact</h2>
-      <p class="text-lg">📧 이메일: <a href="mailto:wldms3333@gmail.com" class="underline">wldms3333@gmail.com</a></p>
-      <p class="text-lg mt-2">🔗 GitHub: <a href="https://github.com/doh3e" target="_blank" class="underline">doh3e</a></p>
+      <div class="relative">
+        <div class="text-white text-4xl font-bold absolute bg-black/50 p-8 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+          <h2 class="text-4xl font-bold mb-4 parisienne-regular text-center rounded-lg">Contact</h2>
+          <p class="text-lg mt-2 flex gap-x-4">
+            <img src="https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/>
+            <a href="mailto:wldms3333@gmail.com" class="underline">wldms3333</a></p>
+          <p class="text-lg mt-2 flex gap-x-4">
+            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
+            <a href="https://github.com/doh3e" target="_blank" class="underline">doh3e</a></p>
+          <p class="text-lg mt-2 flex gap-x-4">
+            <img src="https://img.shields.io/badge/Discord-5865f2?style=for-the-badge&logo=discord&logoColor=white"/>
+            <a href="#" class="underline">0doci</a>
+        </div>
+        <img src="./img/bg.jpg" alt="sunrise-sky-img" class="w-screen h-screen object-cover">
+      </div>
     </section>
   </main>
 
