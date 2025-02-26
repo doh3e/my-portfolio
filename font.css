@@ -1,0 +1,60 @@
+/* import */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yesteryear&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+
+/* ================== 노토산스 ================== */
+
+
+.noto-sans-kr {
+    font-family: "Noto Sans KR", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+/* ================== 둥근고딕 ================== */
+
+/*Laundry Gothic*/
+.TTLaundryGothicB {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* ================== 픽셀 스타일 ================== */
+
+/* 둥근모꼴+ Fixedsys */
+.DungGeunMo {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 도스이야기 */
+.DOSIyagiMedium {
+  font-family: 'DOSIyagiMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/DOSIyagiMedium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* ================== 영문 캘리그라피 스타일 ================== */
+
+.yesteryear-regular {
+  font-family: "Yesteryear", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.parisienne-regular {
+    font-family: "Parisienne", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
