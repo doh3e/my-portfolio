@@ -11,7 +11,7 @@ html, body {
   display: none;
 }
 
-/* 가로 820px 이하에서는 본문 숨기고 경고 메시지만 보이도록 */
+/* 가로 768 이하에서는 본문 숨기고 경고 메시지만 보이도록 */
 @media (max-width: 768px) {
   #content {
     display: none;
@@ -66,9 +66,9 @@ nav > div > a,
   z-index: 2;
 }
 
-.w-full.max-w-4xl.relative.overflow-hidden {
+.w-full.max-w-8xl.relative.overflow-hidden {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   height: auto;
   display: flex;
   align-items: center;
@@ -94,9 +94,9 @@ nav > div > a,
 
 .project-thumbnail img {
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   height: auto;
-  max-height: 350px;
+  max-height: 400px;
   aspect-ratio: 16/9;
   object-fit: contain;
   transition: transform 0.3s ease-in-out;
