@@ -3,30 +3,28 @@ document.addEventListener('DOMContentLoaded', function () {
   const content = document.getElementById("content");
   const mobileWarning = document.getElementById("mobile-warning");
 
-  // 📌 모바일 환경 감지 함수
   function checkMobile() {
     return window.innerWidth <= 768;
   }
 
-  // 📌 모바일 여부 저장
   let isMobile = checkMobile();
-  let eventsRegistered = false; // 이벤트 중복 등록 방지
+  let eventsRegistered = false;
 
-  // 📌 모바일 차단 함수
+  // 모바일 차단 (768 미만)
   function handleMobileBlock() {
     isMobile = checkMobile();
     if (isMobile) {
       console.log("📱 모바일 환경 - 기능 차단");
       content.style.display = "none";
       mobileWarning.style.display = "flex";
-      removeEventListeners(); // 이벤트 제거
+      removeEventListeners();
     } else {
       console.log("🖥️ PC 환경 - 정상 동작");
       content.style.display = "block";
       mobileWarning.style.display = "none";
 
       if (!eventsRegistered) {
-        registerEventListeners(); // 이벤트 등록
+        registerEventListeners();
         eventsRegistered = true;
       }
     }
@@ -37,10 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (isMobile) return;
 
-  // ✅ 이벤트 리스너 등록 함수
   function registerEventListeners() {
 
-    // 🎯 섹션 전환 기능
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
     let currentSectionIndex = 0;
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    // 🎯 프로젝트 데이터 배열
     const projects = [
       { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 사이트", link: "https://i12a703.p.ssafy.io/" },
       { title: "cineMATE", desc: "영화 Open API 기반의 당신을 위한 맞춤 영화 추천 사이트", link: "https://github.com/doh3e/cineMATE" },
@@ -116,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCarousel();
     updateMoveBtn();
 
-    // 🎯 섹션 전환 기능
+    // 섹션 전환
     const handleSectionChange = (direction) => {
       sections[currentSectionIndex].classList.remove('active-section');
 
@@ -139,7 +134,29 @@ document.addEventListener('DOMContentLoaded', function () {
       else if (e.key === 'ArrowUp') handleSectionChange('prev');
     });
 
-    // 🎯 마우스 커서 이펙트
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener('touchend', function (e) {
+      touchEndY = e.changedTouches[0].clientY;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const swipeDistance = touchEndY - touchStartY;
+
+      if (swipeDistance > swipeThreshold) {
+        handleSectionChange('prev');
+      } else if (swipeDistance < -swipeThreshold) {
+        handleSectionChange('next');
+      }
+    }   
+
     const mouseCursor = document.querySelector('.mouse-cursor');
     if (mouseCursor) {
       document.addEventListener('mousemove', (e) => {
@@ -154,6 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function removeEventListeners() {
     window.removeEventListener('wheel', handleSectionChange);
     window.removeEventListener('keydown', handleSectionChange);
+    document.removeEventListener('touchstart', handleSwipe);
+    document.removeEventListener('touchend', handleSwipe);
   }
 
   registerEventListeners();

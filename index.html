@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Jung Jieun</title>
+  <title>🐈 Portfolio - Jung Jieun</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -24,7 +24,7 @@
       <div class="flex justify-between items-center py-3">
         <a class="text-3xl font-bold parisienne-regular" href="/">Portfolio</a>
 
-        <!-- 🖥️ 데스크톱용 메뉴 (기본적으로 보임) -->
+        <!-- 데스크톱용 메뉴 -->
         <div class="hidden md:flex space-x-4">
           <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#mains">MAIN</a>
           <a class="nav-link hover:text-blue-800 font-bold noto-sans-kr" data-target="#intro">INTRODUCE</a>
@@ -52,18 +52,15 @@
 
     <!-- 소개 섹션 -->
     <section id="intro" class="section bg-gray-200 min-h-[60vh] flex flex-col lg:flex-row items-center justify-center p-8">
-      <!-- 이미지 (lg 이상에서만 보이게) -->
       <div class="w-full lg:w-1/2 flex object-cover items-center justify-center lg:block hidden">
         <img src="./img/profile.jpg" alt="myimg" class="w-[90%] h-full rounded-lg shadow-lg transition-transform hover:scale-105">
       </div>
 
-      <!-- 텍스트 영역 -->
       <div class="w-full lg:w-1/2 flex flex-col justify-center">
         <h2 class="text-4xl font-bold text-gray-800 text-center lg:text-left parisienne-regular">Introduce</h2>
         <hr class="my-4 border-gray-400 noto-sans-kr">
         <h2 class="my-4 text-2xl noto-sans-kr font-bold text-center lg:text-left">신입 백엔드 개발자 정지은</h2>
 
-        <!-- 약력 & 특장점 (lg 이상에서도 가로 정렬) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <!-- 약력 -->
           <div>
@@ -205,7 +202,7 @@
     <section id="projects" class="section flex flex-col justify-center items-center bg-gray-100 py-10">
       <h2 class="text-4xl font-bold mt-4 mb-4 parisienne-regular">Projects</h2>
 
-      <!-- Prev / Next 버튼 -->
+      <!-- 버튼 -->
       <div class="flex space-x-4 mb-4">
         <button id="prev" class="px-2 py-1 justify-center items-center text-xs bg-gray-300 text-white rounded-full shadow-md hover:bg-gray-500 transition">
           ◀
