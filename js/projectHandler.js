@@ -20,17 +20,24 @@ export function setupProjectCarousel() {
     const closeModal = document.getElementById("close-modal");
   
     let slideIndex = 0;
+    let isModalOpen = false;
   
     function updateProjectInfo() {
       projectTitle.textContent = projects[slideIndex].title;
       projectDesc.textContent = projects[slideIndex].desc;
       moveBtn.href = projects[slideIndex].link;
       detailBtn.onclick = () => openProjectImage(projects[slideIndex].image);
+
+      if (isModalOpen) {
+        modalImage.src = projects[slideIndex].image;
+      }
+
     }
   
     function openProjectImage(imageSrc) {
       modal.style.display = "flex";
       modalImage.src = imageSrc;
+      isModalOpen = true;
     }
   
     function updateCarousel() {
