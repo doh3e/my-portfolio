@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const sections = document.querySelectorAll('.section');
   const navLinks = document.querySelectorAll('.nav-link');
   let currentSectionIndex = 0;
-  let isScrolling = false; // 🚀 휠 이벤트 중복 방지
+  let isScrolling = false;
 
   const modal = document.getElementById("image-modal");
   const modalImage = document.getElementById("modal-img");
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   ];
 
   function handleSectionChange(direction) {
-    if (isScrolling) return; // 🚀 이미 이동 중이면 실행 안 함
+    if (isScrolling) return;
     isScrolling = true;
 
     sections[currentSectionIndex].classList.remove('active-section');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     sections[currentSectionIndex].classList.add('active-section');
 
-    setTimeout(() => { isScrolling = false; }, 700); // 🚀 0.7초 후 다시 이동 가능
+    setTimeout(() => { isScrolling = false; }, 500);
   }
 
   function handleMobileBlock() {
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
   function registerEventListeners() {
     sections[currentSectionIndex].classList.add('active-section');
 
-    // 🟢 Navbar 메뉴 클릭 시 이동
     navLinks.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -92,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
+    // 📜 슬라이드 이벤트
     const carousel = document.getElementById("carousel");
     const slides = document.querySelectorAll("#carousel > div");
     const prevBtn = document.getElementById("prev");
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener("resize", updateCarousel);
     updateCarousel();
 
-    // 📜 휠 이벤트 (중복 실행 방지)
+    // 📜 휠 이벤트
     window.addEventListener("wheel", function (e) {
       if (e.deltaY > 0) handleSectionChange("next");
       else if (e.deltaY < 0) handleSectionChange("prev");
