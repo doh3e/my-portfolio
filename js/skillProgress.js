@@ -10,7 +10,6 @@ export function animateSkillProgress() {
 
       const rect = item.getBoundingClientRect();
 
-      // 화면에 요소가 80% 이상 나타나면 실행
       if (rect.top < window.innerHeight * 1 && !progressFill.classList.contains("animated")) {
         setTimeout(() => {
           progressFill.style.width = `${level}%`;
