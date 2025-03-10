@@ -239,12 +239,31 @@
         <p id="project-desc" class="text-gray-600">Project Description</p>
       </div>
 
-    <!-- 프로젝트 이동 버튼 -->
-    <a id="move-btn" href="" target="_blank" 
-      class="mt-4 px-6 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition text-center inline-block"
-      role="button" tabindex="0">
-      프로젝트 보러가기
-    </a>
+      <!-- 버튼들 -->
+      <div class="mt-4 flex gap-4">
+        <!-- 프로젝트 상세보기 버튼 -->
+        <a id="pjt-detail-btn" href="javascript:void(0);" 
+          class="px-6 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition text-center inline-block"
+          role="button" tabindex="0">
+          프로젝트 상세보기
+        </a>
+
+        <!-- 깃허브/사이트로 이동 버튼 -->
+        <a id="move-btn" href="" target="_blank" 
+          class="px-6 py-2 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition text-center inline-block"
+          role="button" tabindex="0">
+          깃허브/사이트로 이동
+        </a>
+      </div>
+
+      <!-- 모달 -->
+      <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+        <div class="relative max-w-4xl">
+          <button id="close-modal" class="absolute top-4 -right-2 bg-gray-300 text-black p-2 rounded-full">×</button>x</button>
+          <img id="modal-img" src="" class="max-w-full max-h-screen rounded-lg shadow-lg" />
+        </div>
+      </div>
+      
 
     </section>
 

@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const projects = [
-      { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 사이트", link: "https://github.com/harimau97/docshund" },
-      { title: "cineMATE", desc: "영화 Open API 기반의 당신을 위한 맞춤 영화 추천 사이트", link: "https://github.com/doh3e/cineMATE" },
-      { title: "piccup", desc: "취업준비생을 위한 이력서 및 자소서 관리 사이트", link: "https://github.com/doh3e/piccup" },
-      { title: "바라는 바다!", desc: "날씨 API 및 바다성향 테스트 기반 해수욕장 추천 및 유저 리뷰 사이트", link: "https://github.com/doh3e/bada" },
-      { title: "SSAFLIX", desc: "내가 사랑하는 영화 아카이빙 웹", link: "https://doh3e.github.io/ssaflix-movie/" }
+      { title: "DOCSHUND", desc: "국내 개발자를 위한 IT 공식문서 번역 및 포럼 제공 사이트", link: "https://github.com/harimau97/docshund", image: "docshund_desc.jpg" },
+      { title: "cineMATE", desc: "영화 Open API 기반의 당신을 위한 맞춤 영화 추천 사이트", link: "https://github.com/doh3e/cineMATE", image: "cinemate_desc.jpg" },
+      { title: "piccup", desc: "취업준비생을 위한 이력서 및 자소서 관리 사이트", link: "https://github.com/doh3e/piccup", image: "piccup_desc.jpg" },
+      { title: "바라는 바다!", desc: "날씨 API 및 바다성향 테스트 기반 해수욕장 추천 및 유저 리뷰 사이트", link: "https://github.com/doh3e/bada", image: "barabada_desc.jpg" },
+      { title: "SSAFLIX", desc: "내가 사랑하는 영화 아카이빙 웹", link: "https://doh3e.github.io/ssaflix-movie/", image: "ssaflix_desc.jpg" }
     ];
 
     // 🎯 프로젝트 슬라이드 기능
@@ -74,13 +74,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectTitle = document.getElementById("project-title");
     const projectDesc = document.getElementById("project-desc");
     const moveBtn = document.getElementById("move-btn");
+    const detailBtn = document.getElementById("pjt-detail-btn");
+
+    const modal = document.getElementById("image-modal");
+    const modalImage = document.getElementById("modal-img");
+    const closeModal = document.getElementById("close-modal");
 
     let slideIndex = 0;
     const totalSlides = slides.length;
 
-    const updateMoveBtn = () => {
+    const updateButtons = () => {
       if (moveBtn) moveBtn.href = projects[slideIndex].link;
+      if (detailBtn) {
+        detailBtn.onclick = () => openProjectImage(projects[slideIndex].image);
+      }
     };
+  
+    function openProjectImage(image) {
+      modalImage.src = `img/${image}`;
+      modal.style.display = "flex";
+    }
+  
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
 
     const updateCarousel = () => {
       if (carousel) {
@@ -95,13 +112,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextSlide = () => {
       slideIndex = (slideIndex + 1) % totalSlides;
       updateCarousel();
-      updateMoveBtn();
+      updateButtons();
     };
 
     const prevSlide = () => {
       slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
       updateCarousel();
-      updateMoveBtn();
+      updateButtons();
     };
 
     if (nextBtn) nextBtn.addEventListener("click", nextSlide);
@@ -109,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener("resize", updateCarousel);
     updateCarousel();
-    updateMoveBtn();
+    updateButtons();
 
     // 섹션 전환
     const handleSectionChange = (direction) => {

@@ -109,3 +109,21 @@ nav > div > a,
 .project-thumbnail:hover img {
   transform: scale(1.05);
 }
+
+#image-modal {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#close-modal > button > a{
+  color: inherit;
+  border-radius: 50%;
+}
+
+#close-modal:hover {
+  background-color: #2c5282;
+  color: white;
+}
