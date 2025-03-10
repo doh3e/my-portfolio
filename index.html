@@ -202,18 +202,17 @@
     <section id="projects" class="section flex flex-col justify-center items-center bg-gray-100 py-10">
       <h2 class="text-4xl font-bold mt-4 mb-4 parisienne-regular">Projects</h2>
 
-      <!-- 버튼 -->
-      <div class="flex space-x-4 mb-4">
-        <button id="prev" class="px-2 py-1 justify-center items-center text-xs bg-gray-300 text-white rounded-full shadow-md hover:bg-gray-500 transition">
+      <!-- 프로젝트 캐러셀 -->
+      <div class="relative w-full max-w-8xl overflow-hidden">
+        <!-- 좌우 이동 버튼 (텍스트 형태, 중앙 배치) -->
+        <button id="prev" class="absolute left-6 top-1/2 transform -translate-y-1/2 z-50 text-white text-5xl font-bold shadow-black drop-shadow-xl hover:scale-110 transition">
           ◀
         </button>
-        <button id="next" class="px-2 py-1 justify-center items-center text-xs bg-gray-300 text-white rounded-full shadow-md hover:bg-gray-500 transition">
+        <button id="next" class="absolute right-6 top-1/2 transform -translate-y-1/2 z-50 text-white text-5xl font-bold shadow-black drop-shadow-xl hover:scale-110 transition">
           ▶
         </button>
-      </div>
 
-      <!-- 캐러셀 -->
-      <div class="w-full max-w-8xl relative overflow-hidden">
+        <!-- 슬라이드 -->
         <div class="flex w-full transition-transform duration-500 ease-in-out" id="carousel">
           <div class="project-thumbnail">
             <img src="./img/docshundbanner.png" class="w-full h-80 object-cover rounded-lg">
@@ -232,6 +231,7 @@
           </div>
         </div>
       </div>
+
 
       <!-- 프로젝트 정보 -->
       <div class="mt-6 text-center">
